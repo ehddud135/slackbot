@@ -9,9 +9,11 @@ from slack_sdk.errors import SlackApiError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from customer.models import CustomerList
-from .blocks import home_tab_blocks
+from . import blocks
 
 load_dotenv()
+
+view_block = blocks
 
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
@@ -51,17 +53,17 @@ def app_home_opened(event, client):
     # print("event: ", event)
 
     try:
-        customer_db = CustomerList.objects.all()
-        blocks = home_tab_blocks(customer_db)
+        blocks = view_block.home_tab_blocks()
+        user_id = event["user"]
         # Call the views.publish method using the WebClient passed to listeners
-        result = client.views_publish(
-            user_id=event["user"],
+        client.views_publish(
+            user_id=user_id,
             view={
                 "type": "home",
                 "blocks": blocks
             },
         )
-        # logger.debug("app_home_open result : %s", result)
+        print("user_id is ", user_id)
 
     except SlackApiError as e:
         logger.error("Error fetching conversations: %s", e)
@@ -73,13 +75,14 @@ def approve_test(ack, body, client):
     ack()
 
 
-@app.action("open_modal")
-def open_modal(ack, body, client):
+@app.action("open_modal_customer_append")
+def open_modal_customer_append(ack, body, client):
     # print(body)
+    blocks = view_block.customer_append_modal_block()
     ack()
     try:
         # Call the views.publish method using the WebClient passed to listeners
-        response = client.views_open(
+        client.views_open(
             trigger_id=body["trigger_id"],
             view={
                 "type": "modal",
@@ -87,27 +90,9 @@ def open_modal(ack, body, client):
                 "title": {"type": "plain_text", "text": "고객사 등록", "emoji": True},
                 "submit": {"type": "plain_text", "text": "Submit", "emoji": True},
                 "close": {"type": "plain_text", "text": "Cancel", "emoji": True},
-                "blocks": [
-                    {
-                        "type": "header",
-                        "text": {"type": "plain_text", "text": "고객사 등록 용", "emoji": True}
-                    },
-                    {
-                        "type": "input",
-                        "block_id": "customer_name_input",
-                        "element": {"type": "plain_text_input", "action_id": "customer_name_input"},
-                        "label": {"type": "plain_text", "text": "고객사명", "emoji": True}
-                    },
-                    {
-                        "type": "input",
-                        "block_id": "manager_name_input",
-                        "element": {"type": "plain_text_input", "action_id": "manager_name_input"},
-                        "label": {"type": "plain_text", "text": "담당자명", "emoji": True}
-                    }
-                ]
+                "blocks": blocks
             },
         )
-        # logger.debug("open_modal response %s", response)
     except SlackApiError as e:
         print(logger.error("Error fetching conversations: %s", e))
 
@@ -118,9 +103,10 @@ def append_customer(ack, body, view, client):
     # 모달에서 제출된 데이터 추출
     customer_name = view["state"]["values"]["customer_name_input"]["customer_name_input"]["value"]
     manager_name = view["state"]["values"]["manager_name_input"]["manager_name_input"]["value"]
+    append_date = view["state"]["values"]["append_date"]["append_date"]["value"]
 
     # 데이터베이스에 저장
-    CustomerList.objects.create(customer_name=customer_name, manager=manager_name)
+    CustomerList.objects.create(customer_name=customer_name, manager=manager_name, append_date=append_date)
 
     # 사용자에게 메시지 전송
     user_id = body["user"]["id"]
@@ -128,3 +114,26 @@ def append_customer(ack, body, view, client):
         channel=user_id,
         # text=f"Thank you, {customer_name}. Your age ({manager_name}) has been recorded!"
     )
+
+
+@app.action("open_modal_customer_delete")
+def open_modal_customer_delete(ack, body, client):
+    # print(body)
+    user_id = body['user']['id']
+    blocks = view_block.customer_delete_modal_block(user_id)
+    ack()
+    try:
+        # Call the views.publish method using the WebClient passed to listeners
+        client.views_open(
+            trigger_id=body["trigger_id"],
+            view={
+                "type": "modal",
+                "callback_id": "append_customer",
+                "title": {"type": "plain_text", "text": "고객사 등록", "emoji": True},
+                "submit": {"type": "plain_text", "text": "Submit", "emoji": True},
+                "close": {"type": "plain_text", "text": "Cancel", "emoji": True},
+                "blocks": blocks
+            },
+        )
+    except SlackApiError as e:
+        print(logger.error("Error fetching conversations: %s", e))

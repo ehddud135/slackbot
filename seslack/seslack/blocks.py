@@ -3,17 +3,13 @@ import pandas as pd
 from tabulate import tabulate
 from customer.models import CustomerList
 
-dbconn = sqlite3.connect(r"D:\automation\slack_bot\seslack\db.sqlite3")
 
-df = pd.read_sql("SELECT * FROM customer_customerlist", dbconn, index_col=None)
-
-# print(df)
-
-# print(tabulate(df, headers='keys', tablefmt='psql', showindex=True))
-result = tabulate(df, headers='keys', tablefmt='psql', showindex=True)
-
-
-def home_tab_blocks(data):
+def home_tab_blocks():
+    dbconn = sqlite3.connect(r"C:\Users\HwangDongYeong\Documents\GitHub\slackbot\seslack\db.sqlite3")
+    df = pd.read_sql("SELECT * FROM customer_customerlist", dbconn, index_col=None)
+    df = df.drop(labels='id', axis=1)
+    result = tabulate(df, headers='keys', tablefmt='heavy_grid', showindex=False)
+    print(result)
 
     blocks = [
         {
@@ -22,19 +18,17 @@ def home_tab_blocks(data):
                 {
                     "type": "button",
                     "text": {"type": "plain_text", "text": "고객사 등록"},
-                    "action_id": "open_modal"
+                    "action_id": "open_modal_customer_append"
                 },
                 {
                     "type": "button",
                     "text": {"type": "plain_text", "text": "Approve Button", "emoji": True},
-                    "value": "click_me_123",
                     "action_id": "approve_test"
                 },
                 {
                     "type": "button",
-                    "text": {"type": "plain_text", "text": "Ler Ros", "emoji": True},
-                    "value": "click_me_123",
-                    "url": "https://google.com"
+                    "text": {"type": "plain_text", "text": "고객사 삭제"},
+                    "action_id": "open_modal_customer_delete"
                 }
             ]
         },
@@ -46,30 +40,83 @@ def home_tab_blocks(data):
             "text": {"type": "plain_text", "text": "정기점검 관리", "emoji": True}
         },
         {
-            "type": "input",
-            "element": {"type": "plain_text_input", "action_id": "plain_text_input-action"},
-            "label": {"type": "plain_text", "text": "Label", "emoji": True}
-        },
-        {
             "type": "divider"
         },
         {
             "type": "section",
             "text": {
                     "type": "mrkdwn",
-                    "text": f"{result}"
+                    "text": f"```{result}```"
             }
         }
     ]
-    for item in data:
-        blocks.append(
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": f"Name: {item.customer_name}, Age: {item.manager}"
-                }
-            }
-        )
 
+    return blocks
+
+
+def customer_append_modal_block():
+    blocks = [
+        {
+            "type": "header",
+            "text": {"type": "plain_text", "text": "고객사 등록 용", "emoji": True}
+        },
+        {
+            "type": "input",
+            "block_id": "customer_name_input",
+                        "element": {"type": "plain_text_input", "action_id": "customer_name_input"},
+                        "label": {"type": "plain_text", "text": "고객사명", "emoji": True}
+        },
+        {
+            "type": "input",
+            "block_id": "manager_name_input",
+                        "element": {"type": "plain_text_input", "action_id": "manager_name_input"},
+                        "label": {"type": "plain_text", "text": "담당자명", "emoji": True}
+        },
+        {
+            "type": "input",
+            "block_id": "append_date",
+                        "element": {"type": "plain_text_input", "action_id": "append_date"},
+                        "label": {"type": "plain_text", "text": "담당자명", "emoji": True}
+        }
+    ]
+    return blocks
+
+
+def customer_delete_modal_block(user_id):
+    blocks = [
+        {
+            "type": "actions",
+            "elements": [
+                {
+                    "type": "conversations_select",
+                    "placeholder": {"type": "plain_text", "text": "Select private conversation", "emoji": True},
+                    "filter": {"include": ["private"]},
+                    "action_id": "customer_delete"
+                }
+            ]
+        },
+        {
+            "type": "actions",
+            "elements": [
+                {
+                    "type": "conversations_select",
+                    "placeholder": {"type": "plain_text", "text": "Select a conversation"},
+                    "initial_conversation": "G12345678",
+                    "action_id": "actionId-0"
+                },
+                {
+                    "type": "users_select",
+                    "placeholder": {"type": "plain_text", "text": "Select a user"},
+                    "initial_user": f"{user_id}",
+                                    "action_id": "actionId-1"
+                },
+                {
+                    "type": "channels_select",
+                    "placeholder": {"type": "plain_text", "text": "Select a channel"},
+                    "initial_channel": "C12345678",
+                    "action_id": "actionId-2"
+                }
+            ]
+        },
+    ]
     return blocks
