@@ -1,0 +1,51 @@
+{'id': 'V07EZ4PFL9J', 'team_id': 'T0UE0GJBB', 'type': 'modal', 'blocks': [
+        {'type': 'input', 'block_id': 'input_package_name', 'label': {'type': 'plain_text', 'text': 'Package Name', 'emoji': True
+            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'plain_text_input', 'action_id': 'input_package_name', 'dispatch_action_config': {'trigger_actions_on': ['on_enter_pressed'
+                    ]
+                }
+            }
+        },
+        {'type': 'input', 'block_id': 'input_customer_name', 'label': {'type': 'plain_text', 'text': 'Customer Name', 'emoji': True
+            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'plain_text_input', 'action_id': 'input_customer_name', 'dispatch_action_config': {'trigger_actions_on': ['on_enter_pressed'
+                    ]
+                }
+            }
+        },
+        {'type': 'input', 'block_id': 'append_date', 'label': {'type': 'plain_text', 'text': '등록일', 'emoji': True
+            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'datepicker', 'action_id': 'append_date', 'initial_date': '2024-07-31'
+            }
+        },
+        {'type': 'input', 'block_id': 'license_expire_date', 'label': {'type': 'plain_text', 'text': '라이센스 만료일', 'emoji': True
+            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'datepicker', 'action_id': 'license_expire_date', 'initial_date': '2024-07-31'
+            }
+        },
+        {'type': 'input', 'block_id': 'I/Gyb', 'label': {'type': 'plain_text', 'text': 'os_type', 'emoji': True
+            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'radio_buttons', 'action_id': 'os_type', 'options': [
+                    {'text': {'type': 'plain_text', 'text': 'AOS', 'emoji': True
+                        }, 'value': 'AOS'
+                    },
+                    {'text': {'type': 'plain_text', 'text': 'iOS', 'emoji': True
+                        }, 'value': 'iOS'
+                    }
+                ]
+            }
+        }
+    ], 'private_metadata': '', 'callback_id': 'append_package', 'state': {'values': {'input_package_name': {'input_package_name': {'type': 'plain_text_input', 'value': 'com.finnq.f1'
+                }
+            }, 'input_customer_name': {'input_customer_name': {'type': 'plain_text_input', 'value': '핀크'
+                }
+            }, 'append_date': {'append_date': {'type': 'datepicker', 'selected_date': '2024-07-31'
+                }
+            }, 'license_expire_date': {'license_expire_date': {'type': 'datepicker', 'selected_date': '2024-08-01'
+                }
+            }, 'I/Gyb': {'os_type': {'type': 'radio_buttons', 'selected_option': {'text': {'type': 'plain_text', 'text': 'AOS', 'emoji': True
+                        }, 'value': 'AOS'
+                    }
+                }
+            }
+        }
+    }, 'hash': '1722434718.ffXbcU68', 'title': {'type': 'plain_text', 'text': '고객사 등록', 'emoji': True
+    }, 'clear_on_close': False, 'notify_on_close': False, 'close': {'type': 'plain_text', 'text': 'Cancel', 'emoji': True
+    }, 'submit': {'type': 'plain_text', 'text': 'Submit', 'emoji': True
+    }, 'previous_view_id': None, 'root_view_id': 'V07EZ4PFL9J', 'app_id': 'A0788K6LZG9', 'external_id': '', 'app_installed_team_id': 'T0UE0GJBB', 'bot_id': 'B078JPH2WN4'
+}
