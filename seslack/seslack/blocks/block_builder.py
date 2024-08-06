@@ -12,31 +12,18 @@ def home_tab_blocks():
     top_block = top_action_block()
     bottom_block = bottom_action_block()
     blocks = [
-        {
-            "type": "actions",
-            "elements": top_block
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "header",
-            "text": {"type": "plain_text", "text": "정기점검 관리", "emoji": True}
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "section",
-            "text": {"type": "mrkdwn", "text": f"```{result}```"}
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "actions",
-            "elements": bottom_block
-        }
+        {"type": "actions", "elements": top_block},
+        {"type": "divider"},
+        {"type": "header",
+         "text": {"type": "plain_text", "text": "정기점검 관리", "emoji": True}
+         },
+        {"type": "divider"},
+        {"type": "section",
+         "text": {"type": "mrkdwn", "text": f"```{result}```"}
+         },
+        {"type": "divider"},
+        {"type": "actions",
+         "elements": bottom_block}
     ]
 
     return blocks

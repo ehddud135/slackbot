@@ -1,51 +1,179 @@
-{'id': 'V07EZ4PFL9J', 'team_id': 'T0UE0GJBB', 'type': 'modal', 'blocks': [
-        {'type': 'input', 'block_id': 'input_package_name', 'label': {'type': 'plain_text', 'text': 'Package Name', 'emoji': True
-            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'plain_text_input', 'action_id': 'input_package_name', 'dispatch_action_config': {'trigger_actions_on': ['on_enter_pressed'
-                    ]
-                }
-            }
-        },
-        {'type': 'input', 'block_id': 'input_customer_name', 'label': {'type': 'plain_text', 'text': 'Customer Name', 'emoji': True
-            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'plain_text_input', 'action_id': 'input_customer_name', 'dispatch_action_config': {'trigger_actions_on': ['on_enter_pressed'
-                    ]
-                }
-            }
-        },
-        {'type': 'input', 'block_id': 'append_date', 'label': {'type': 'plain_text', 'text': '등록일', 'emoji': True
-            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'datepicker', 'action_id': 'append_date', 'initial_date': '2024-07-31'
-            }
-        },
-        {'type': 'input', 'block_id': 'license_expire_date', 'label': {'type': 'plain_text', 'text': '라이센스 만료일', 'emoji': True
-            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'datepicker', 'action_id': 'license_expire_date', 'initial_date': '2024-07-31'
-            }
-        },
-        {'type': 'input', 'block_id': 'I/Gyb', 'label': {'type': 'plain_text', 'text': 'os_type', 'emoji': True
-            }, 'optional': False, 'dispatch_action': False, 'element': {'type': 'radio_buttons', 'action_id': 'os_type', 'options': [
-                    {'text': {'type': 'plain_text', 'text': 'AOS', 'emoji': True
-                        }, 'value': 'AOS'
+{
+    "type": "block_actions",
+    "user": {
+        "id": "U03A07Q6DNV",
+        "username": "dyhwang",
+        "name": "dyhwang",
+        "team_id": "T0UE0GJBB"
+    },
+    "api_app_id": "A0788K6LZG9",
+    "token": "HCc9Ev5ig9nCKmaeHRxAkINh",
+    "container": {
+        "type": "view",
+        "view_id": "V07874877GV"
+    },
+    "trigger_id": "7511162804487.28476562385.17c5ac3f586da79fa1f47540c91d2b86",
+    "team": {
+        "id": "T0UE0GJBB",
+        "domain": "stealien"
+    },
+    "enterprise": null,
+    "is_enterprise_install": false,
+    "view": {
+        "id": "V07874877GV",
+        "team_id": "T0UE0GJBB",
+        "type": "home",
+        "blocks": [
+            {
+                "type": "actions",
+                "block_id": "OXHLB",
+                "elements": [
+                    {
+                        "type": "button",
+                        "action_id": "open_modal_customer_append",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "\uace0\uac1d\uc0ac \ub4f1\ub85d",
+                            "emoji": true
+                        }
                     },
-                    {'text': {'type': 'plain_text', 'text': 'iOS', 'emoji': True
-                        }, 'value': 'iOS'
+                    {
+                        "type": "button",
+                        "action_id": "approve_test",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Approve Button",
+                            "emoji": true
+                        }
+                    },
+                    {
+                        "type": "button",
+                        "action_id": "open_modal_customer_delete",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "\uace0\uac1d\uc0ac \uc0ad\uc81c",
+                            "emoji": true
+                        }
+                    },
+                    {
+                        "type": "button",
+                        "action_id": "open_modal_package_append",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "\ud328\ud0a4\uc9c0 \uba85 \ub4f1\ub85d",
+                            "emoji": true
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "divider",
+                "block_id": "\/F8yE"
+            },
+            {
+                "type": "header",
+                "block_id": "IHsNx",
+                "text": {
+                    "type": "plain_text",
+                    "text": "\uc815\uae30\uc810\uac80 \uad00\ub9ac",
+                    "emoji": true
+                }
+            },
+            {
+                "type": "divider",
+                "block_id": "HjxfQ"
+            },
+            {
+                "type": "section",
+                "block_id": "M\/e0D",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "```+-------------------+-------------------+-------------------+\n|   customer_name   |    manager_name   |    append_date    |\n+-------------------+-------------------+-------------------+\n|       \ud540\ud06c        |      \ud669\ub3d9\uc601       |    2024-08-01     |\n+-------------------+-------------------+-------------------+```",
+                    "verbatim": false
+                }
+            },
+            {
+                "type": "divider",
+                "block_id": "qoLb2"
+            },
+            {
+                "type": "actions",
+                "block_id": "B4OMi",
+                "elements": [
+                    {
+                        "type": "button",
+                        "action_id": "open_modal_customer_list",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "\uace0\uac1d\uc0ac \ubaa9\ub85d",
+                            "emoji": true
+                        }
+                    },
+                    {
+                        "type": "button",
+                        "action_id": "approve_test",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Approve Button",
+                            "emoji": true
+                        }
+                    },
+                    {
+                        "type": "button",
+                        "action_id": "open_modal_customer_delete",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "\uc810\uac80 \ub0b4\uc5ed",
+                            "emoji": true
+                        }
+                    },
+                    {
+                        "type": "button",
+                        "action_id": "open_modal_package_append",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "\ud328\ud0a4\uc9c0 \uba85 \ubaa9\ub85d",
+                            "emoji": true
+                        }
                     }
                 ]
             }
+        ],
+        "private_metadata": "",
+        "callback_id": "",
+        "state": {
+            "values": {}
+        },
+        "hash": "1722824917.qcb33MHw",
+        "title": {
+            "type": "plain_text",
+            "text": "View Title",
+            "emoji": true
+        },
+        "clear_on_close": false,
+        "notify_on_close": false,
+        "close": null,
+        "submit": null,
+        "previous_view_id": null,
+        "root_view_id": "V07874877GV",
+        "app_id": "A0788K6LZG9",
+        "external_id": "",
+        "app_installed_team_id": "T0UE0GJBB",
+        "bot_id": "B078JPH2WN4"
+    },
+    "actions": [
+        {
+            "action_id": "open_modal_customer_append",
+            "block_id": "OXHLB",
+            "text": {
+                "type": "plain_text",
+                "text": "\uace0\uac1d\uc0ac \ub4f1\ub85d",
+                "emoji": true
+            },
+            "type": "button",
+            "action_ts": "1722824972.498443"
         }
-    ], 'private_metadata': '', 'callback_id': 'append_package', 'state': {'values': {'input_package_name': {'input_package_name': {'type': 'plain_text_input', 'value': 'com.finnq.f1'
-                }
-            }, 'input_customer_name': {'input_customer_name': {'type': 'plain_text_input', 'value': '핀크'
-                }
-            }, 'append_date': {'append_date': {'type': 'datepicker', 'selected_date': '2024-07-31'
-                }
-            }, 'license_expire_date': {'license_expire_date': {'type': 'datepicker', 'selected_date': '2024-08-01'
-                }
-            }, 'I/Gyb': {'os_type': {'type': 'radio_buttons', 'selected_option': {'text': {'type': 'plain_text', 'text': 'AOS', 'emoji': True
-                        }, 'value': 'AOS'
-                    }
-                }
-            }
-        }
-    }, 'hash': '1722434718.ffXbcU68', 'title': {'type': 'plain_text', 'text': '고객사 등록', 'emoji': True
-    }, 'clear_on_close': False, 'notify_on_close': False, 'close': {'type': 'plain_text', 'text': 'Cancel', 'emoji': True
-    }, 'submit': {'type': 'plain_text', 'text': 'Submit', 'emoji': True
-    }, 'previous_view_id': None, 'root_view_id': 'V07EZ4PFL9J', 'app_id': 'A0788K6LZG9', 'external_id': '', 'app_installed_team_id': 'T0UE0GJBB', 'bot_id': 'B078JPH2WN4'
+    ]
 }
+['김우성', '박은재', '우종범', '최정윤', '홍진진', '황동영'
+]

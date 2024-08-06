@@ -1,5 +1,4 @@
 from datetime import datetime
-from customer.models import CustomerList
 from seslack.blocks.DatabaseAccessor import DatabaseAccessor
 from seslack.blocks.BlockGenerator import BlockGenerator
 
@@ -15,10 +14,8 @@ def create_modal_view_block(input_text, blocks, include_submit=bool, callback_id
                 "close": {"type": "plain_text", "text": "Cancel", "emoji": True},
                 "blocks": blocks
     }
-
     if callback_id:
         view["callback_id"] = callback_id
-
     if include_submit:
         view["submit"] = {"type": "plain_text", "text": "Submit", "emoji": True}
     return view
@@ -27,7 +24,7 @@ def create_modal_view_block(input_text, blocks, include_submit=bool, callback_id
 def customer_append_modal_block():
     option_data = DA.get_options("manager_name", "ManagerList")
     option_data = [name[0] for name in option_data]
-    print(option_data)
+    # print(option_data)
     bg = BlockGenerator()
     bg.add_text_input("customer_name_input", "고객사명")
     bg.add_static_select("manager_name_input", "담당자명", option_data)
