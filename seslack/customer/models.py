@@ -7,35 +7,39 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+
 class Manager(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     user_id = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'Manager'
 
+
 class Customer(models.Model):
     name = models.CharField(max_length=100)
-    manger_name = models.ForeignKey(Manager, on_delete=models.SET_NULL, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    manager = models.ForeignKey(Manager, to_field="name", on_delete=models.SET_NULL, null=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'Customer'
+
 
 class Packages(models.Model):
     name = models.CharField(max_length=100)
     platform = models.CharField(max_length=10)  # 'Android' or 'iOS'
     license_expire_date = models.DateField(blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'Packages'
         unique_together = ['name', 'platform']
+
 
 class AndroidApplyOptions(models.Model):
     package = models.ForeignKey(Packages, on_delete=models.CASCADE)
@@ -51,11 +55,12 @@ class AndroidApplyOptions(models.Model):
     prevent_decompile = models.BooleanField(default=False)
     chekc_mem_scanner = models.BooleanField(default=False)
     encrypt_flutter = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'AndroidApplyOptions'
+
 
 class iOSApplyOptions(models.Model):
     package = models.ForeignKey(Packages, on_delete=models.CASCADE)
@@ -71,7 +76,7 @@ class iOSApplyOptions(models.Model):
     symbol_delete = models.BooleanField(default=False)
     log_hiding = models.BooleanField(default=False)
     dynamic_api_hiding = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
@@ -87,12 +92,12 @@ class AndroidInspectResult(models.Model):
     emulator = models.BooleanField(default=False)
     obfuscate = models.BooleanField(default=False)
     decompile = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'AndroidInspectResult'
-    
+
 
 class iOSInspectResult(models.Model):
     package = models.ForeignKey(Packages, on_delete=models.CASCADE)
@@ -102,21 +107,23 @@ class iOSInspectResult(models.Model):
     integrity = models.BooleanField(default=False)
     string_encrypt = models.BooleanField(default=False)
     symbol_del = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'iOSInspectResult'
 
+
 class InspectionRecord(models.Model):
     package = models.ForeignKey(Packages, on_delete=models.CASCADE)
-    inspection_date = models.DateTimeField()
+    inspection_date = models.DateField()
     details = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
 
     class Meta:
         managed = True
         db_table = 'InspectionRecord'
+
 
 class InspectionSchedule(models.Model):
     name = models.ForeignKey(Customer, on_delete=models.CASCADE)

@@ -22,7 +22,7 @@ def create_modal_view_block(input_text, blocks, include_submit=bool, callback_id
 
 
 def customer_append_modal_block():
-    option_data = DA.get_options("manager_name", "ManagerList")
+    option_data = DA.get_options("name", "Manager")
     option_data = [name[0] for name in option_data]
     # print(option_data)
     bg = BlockGenerator()
@@ -34,7 +34,7 @@ def customer_append_modal_block():
 
 
 def customer_delete_modal_block(user_id):
-    option_data = DA.get_options("manager_name", "ManagerList")
+    option_data = DA.get_options("name", "Manager")
     option_data = [name[0] for name in option_data]
     bg = BlockGenerator()
     bg.add_static_select("select_manager", "담당자명", option_data)
@@ -69,7 +69,7 @@ def append_manager_modal_block():
 
 
 def customer_list_modal_block():
-    customer_list = DA.get_table("CustomerList")
+    customer_list = DA.get_table("Customer")
     bg = BlockGenerator()
     bg.add_mrkdwn_block(customer_list)
     return bg.result

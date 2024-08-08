@@ -8,7 +8,7 @@ today_date = datetime.now().strftime('%Y-%m-%d')
 
 
 def home_tab_blocks():
-    result = DA.get_table("CustomerList")
+    result = DA.get_table("Customer")
     top_block = top_action_block()
     bottom_block = bottom_action_block()
     blocks = [
