@@ -22,39 +22,41 @@ def home_tab_blocks():
          "text": {"type": "mrkdwn", "text": f"```{result}```"}
          },
         {"type": "divider"},
-        {"type": "actions",
-         "elements": bottom_block}
+        {"type": "actions", "elements": bottom_block}
     ]
 
     return blocks
 
 
-def make_options_block(option_data):
-    result = []
-    for option in option_data:
-        option_block = {
-            "text": {"type": "plain_text", "text": option[0]},
-            "value": option[0]
-        }
-        result.append(option_block)
-    return result
-
-
 def top_action_block():
     bg = BlockGenerator()
     bg.add_button("고객사 등록", "open_modal_customer_append")
-    bg.add_button("Approve Button", "approve_test")
     bg.add_button("고객사 삭제", "open_modal_customer_delete")
-    bg.add_button("패키지 명 등록", "open_modal_package_append")
-    # bg.add_button("SE 등록", "open_modal_append_manager")
+    bg.add_button("패키지 등록", "open_modal_package_append")
+    bg.add_button("패키지 삭제", "open_modal_package_delete")
+    bg.add_button("점검 일정 변경", "open_modal_inspect_schedule")
+    bg.add_button("SE 등록", "open_modal_append_manager")
     return bg.result
 
 
 def bottom_action_block():
     bg = BlockGenerator()
     bg.add_button("고객사 목록", "open_modal_customer_list")
-    bg.add_button("Approve Button", "approve_test")
-    bg.add_button("점검 내역", "open_modal_customer_delete")
+    bg.add_button("패키지 목록", "open_modal_packages_list")
+    bg.add_button("점검 내역", "open_modal_inspect_report")
     bg.add_button("패키지 명 목록", "open_modal_package_append")
-    # bg.add_button("SE 등록", "open_modal_append_manager")
     return bg.result
+
+
+def create_modal_view_block(input_text, blocks, include_submit=bool, callback_id=None):
+    view = {
+        "type": "modal",
+                "title": {"type": "plain_text", "text": input_text, "emoji": True},
+                "close": {"type": "plain_text", "text": "Cancel", "emoji": True},
+                "blocks": blocks
+    }
+    if callback_id:
+        view["callback_id"] = callback_id
+    if include_submit:
+        view["submit"] = {"type": "plain_text", "text": "Submit", "emoji": True}
+    return view

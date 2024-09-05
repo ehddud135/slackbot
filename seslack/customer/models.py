@@ -19,7 +19,7 @@ class Manager(models.Model):
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     manager = models.ForeignKey(Manager, to_field="name", on_delete=models.SET_NULL, null=True)
     created_at = models.DateField(auto_now_add=True)
 
@@ -32,7 +32,7 @@ class Packages(models.Model):
     name = models.CharField(max_length=100)
     platform = models.CharField(max_length=10)  # 'Android' or 'iOS'
     license_expire_date = models.DateField(blank=True, null=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, to_field="name", on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
 
     class Meta:
@@ -126,7 +126,7 @@ class InspectionRecord(models.Model):
 
 
 class InspectionSchedule(models.Model):
-    name = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    name = models.ForeignKey(Customer, to_field="name", on_delete=models.CASCADE)
     January = models.BooleanField(default=False)
     February = models.BooleanField(default=False)
     March = models.BooleanField(default=False)

@@ -1,0 +1,70 @@
+{'type': 'view_submission',
+ 'team': {'id': 'T0UE0GJBB', 'domain': 'stealien'},
+ 'user': {'id': 'U03A07Q6DNV', 'username': 'dyhwang', 'name': 'dyhwang', 'team_id': 'T0UE0GJBB'},
+ 'api_app_id': 'A0788K6LZG9',
+  'token': 'HCc9Ev5ig9nCKmaeHRxAkINh',
+   'trigger_id': '7532352338514.28476562385.dbe4d4e5b1294709a28ca9d9c5aaae79',
+    'view': {'id': 'V07G10M91LH', 
+            'team_id': 'T0UE0GJBB', 
+            'type': 'modal', 
+            'blocks': [
+                        {'type': 'input', 
+                        'block_id': 'customer_name_input', 
+                        'label': {'type': 'plain_text', 'text': '고객사명', 'emoji': True}, 
+                        'optional': False, 
+                        'dispatch_action': False, 
+                        'element': {'type': 'plain_text_input', 'action_id': 'customer_name_input', 'dispatch_action_config': 
+                                        {'trigger_actions_on': 
+                                                ['on_enter_pressed']
+                                            }
+                                    }
+                        },
+                        {'type': 'input', 
+                        'block_id': 'manager_name_input', 
+                        'label': {'type': 'plain_text', 'text': '담당자명', 'emoji': True}, 
+                        'optional': False, 
+                        'dispatch_action': False, 
+                        'element': {'type': 'static_select', 
+                                    'action_id': 'manager_name_input', 
+                                    'placeholder': {'type': 'plain_text', 'text': 'Select an item', 'emoji': True}, 
+                                    'options': [
+                                                {'text': {'type': 'plain_text', 'text': '황동영', 'emoji': True
+                                                    }, 'value': '황동영'
+                                                },
+                                                {'text': {'type': 'plain_text', 'text': '박은재', 'emoji': True
+                                                    }, 'value': '박은재'
+                                                },
+                                                {'text': {'type': 'plain_text', 'text': '홍진진', 'emoji': True
+                                                    }, 'value': '홍진진'
+                                                },
+                                                {'text': {'type': 'plain_text', 'text': '최정윤', 'emoji': True
+                                                    }, 'value': '최정윤'
+                                                },
+                                                {'text': {'type': 'plain_text', 'text': '우종범', 'emoji': True
+                                                    }, 'value': '우종범'
+                                                },
+                                                {'text': {'type': 'plain_text', 'text': '김우성', 'emoji': True
+                                                    }, 'value': '김우성'
+                                                }
+                                                ]
+                                        }
+                            },
+            {'type': 'input', 'block_id': 'append_date', 'label': {'type': 'plain_text', 'text': '등록일', 'emoji': True}, 'optional': False, 'dispatch_action': False, 'element': {'type': 'datepicker', 'action_id': 'append_date', 'initial_date': '2024-08-06'
+                }
+            }
+        ], 'private_metadata': '', 'callback_id': 'append_customer', 'state': {'values': {'customer_name_input': {'customer_name_input': {'type': 'plain_text_input', 'value': '핀크'
+                    }
+                }, 'manager_name_input': {'manager_name_input': {'type': 'static_select', 'selected_option': {'text': {'type': 'plain_text', 'text': '황동영', 'emoji': True
+                            }, 'value': '황동영'
+                        }
+                    }
+                }, 'append_date': {'append_date': {'type': 'datepicker', 'selected_date': '2024-08-06'
+                    }
+                }
+            }
+        }, 'hash': '1722923175.nMA0fz2V', 'title': {'type': 'plain_text', 'text': '고객사 등록', 'emoji': True
+        }, 'clear_on_close': False, 'notify_on_close': False, 'close': {'type': 'plain_text', 'text': 'Cancel', 'emoji': True
+        }, 'submit': {'type': 'plain_text', 'text': 'Submit', 'emoji': True
+        }, 'previous_view_id': None, 'root_view_id': 'V07G10M91LH', 'app_id': 'A0788K6LZG9', 'external_id': '', 'app_installed_team_id': 'T0UE0GJBB', 'bot_id': 'B078JPH2WN4'
+    }, 'response_urls': [], 'is_enterprise_install': False, 'enterprise': None
+}
