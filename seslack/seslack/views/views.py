@@ -13,7 +13,8 @@ from customer.models import Customer, Manager, Packages
 from ..blocks import block_builder
 from ..views import customer_views, manager_views, package_views, inspect_views
 
-load_dotenv()
+env_path = "../../.env"
+load_dotenv(dotenv_path=env_path)
 
 view_block = block_builder
 
@@ -21,7 +22,7 @@ logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 SLACK_SIGNING_SECRET = os.getenv('SIGNING_SECRET')
-SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
+SLACK_BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 app = App(
     token=SLACK_BOT_TOKEN,
